@@ -1,23 +1,25 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*------------------------------
+|      functions.js            |
+------------------------------*/
 
 var obj; //the Object extracted from json
 var url; //JSON api url
 var farStr, celStr; //display strings
-$.getJSON("http://ip-api.com/json", function(result){
-  obj = result;
-  //extract and display City
-  //uses ipinfo to get location. 
-  document.getElementById("city").innerHTML = "city: " + obj["city"] + "," + " " + obj["country"];
-  //document.getElementById("latlong").innerHTML = obj.lat+ " " + obj.lon;
-  //make the url to open weather api
-  url = "http://api.openweathermap.org/data/2.5/weather?lat=" + obj["lat"] + "&" + "lon=" + obj["lon"] + "&appid=6c6c8be11fd50a9a68863490af30408f";
-  
-  //now to get the JSON from api
+
+
+$.getJSON('https://ipinfo.io', function(a){
+var location = a.loc;
+  //alert(location);
+    locationArray = location.split(',');
+    var aa = locationArray[0];
+    var bb = locationArray[1];
+  document.getElementById("city").innerHTML = "city: " + a.city + ", " + a.country;
+  //http://api.openweathermap.org/data/2.5/weather?lat=43.6383&lon=-79.4301&appid=6c6c8be11fd50a9a68863490af30408f
+  url = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=" + aa + "&" + "lon=" + bb + "&appid=6c6c8be11fd50a9a68863490af30408f";
+  //document.getElementById("title").innerHTML = url;
+ 
   $.getJSON(url, function(result){
+    //
     var array = result;// local var
     var weatherObj = array["weather"]; //weather obj
     changeBG(weatherObj[0].main); //displays correct bg
@@ -35,7 +37,13 @@ $.getJSON("http://ip-api.com/json", function(result){
     
       
     });
-  });
+  
+  //alert("AAAAAAAAAAAAAAAA");
+  //alert(a.country);
+    //alert("lat: " + aa + " long:" + bb);
+    
+});
+
 
 // changes the text on the button according to current
 function changeTemp(){
@@ -54,25 +62,26 @@ function changeTemp(){
 //displays a correct background image for the current weather
 //images are hosted on photobucket. 
 function changeBG(str){
-  var clear = "url('http://i1281.photobucket.com/albums/a515/iamyangandirule/sunny_zpsqo2ouunk.jpg')";
-  var rain = "url('http://i1281.photobucket.com/albums/a515/iamyangandirule/rain_zpsrkz17cgj.jpg')";
-  var cloudy = "url('http://i1281.photobucket.com/albums/a515/iamyangandirule/cloudy_zpspo19h7oe.jpg')";
-  var snow = "url('http://i1281.photobucket.com/albums/a515/iamyangandirule/snow_zpskkdbkqov.jpg')";
+  var clear = "url('img/sunny.jpg')";
+  var rain = "url('img/rain.jpg')";
+  var cloudy = "url('img/cloudy.jpg')";
+  var snow = "url('img/snow.jpg')";
 
   if (str === "Clear"){
-    document.body.style.backgroundImage = clear;
+    document.body.style.backgroundImage = 'sunny.jpg';
   }
   else if(str === "Clouds"){
-    document.body.style.backgroundImage = cloudy;
+      
+    document.body.style.backgroundImage = clear;
     //changeTextColor();
     
   }
   else if(str === "Snow"){
     changeTextColor();
-    document.body.style.backgroundImage = snow;
+    document.body.style.backgroundImage = 'sunny.jpg';
   }
   else if(str === "Rain"){
-    document.body.style.backgroundImage = rain;
+    document.body.style.backgroundImage = 'sunny.jpg';
     changeTextColor();
   }
     document.body.style.backgroundSize = "cover";
