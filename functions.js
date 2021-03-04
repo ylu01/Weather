@@ -14,8 +14,7 @@ var location = a.loc;
     var aa = locationArray[0];
     var bb = locationArray[1];
   document.getElementById("city").innerHTML = "city: " + a.city + ", " + a.country;
-  //http://api.openweathermap.org/data/2.5/weather?lat=43.6383&lon=-79.4301&appid=6c6c8be11fd50a9a68863490af30408f
-  url = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=" + aa + "&" + "lon=" + bb + "&appid=6c6c8be11fd50a9a68863490af30408f";
+  url = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=" + aa + "&" + "lon=" + bb + "token";
   //document.getElementById("title").innerHTML = url;
  
   $.getJSON(url, function(result){
