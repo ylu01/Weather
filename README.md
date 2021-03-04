@@ -1,7 +1,9 @@
-# new-template
+# Weather-app
 
+A simple app that uses the open weather API to display simple information about the weather in your area.
 ## Project setup
 ```
+please install the required dependencies first.
 npm install
 ```
 
