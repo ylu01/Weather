@@ -4,22 +4,22 @@ A simple app that uses the open weather API to display simple information about 
 ## Project setup
 ```
 please install the required dependencies first.
-npm install
+npm install 
+or
+yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Issues and notes
+```
+The app do need to call two api's and services, access tokens have been excluded from the source code. 
+need to find a way to bypass it. 
+```
+
+### Running the program
 ```
 npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
+yarn run serve
 ```
 
 ### Customize configuration
